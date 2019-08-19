@@ -1,0 +1,14 @@
+<?php
+/**
+ * Ce fichier est modèle du parametres.php pour ne pas versionner les identifiants à la base de données
+ */
+// Démarrage de la session
+	session_start();
+
+// Constantes
+
+	define('HOST', $_SERVER['HTTP_HOST']);
+
+	define('METHOD', $_SERVER['REQUEST_METHOD']);
+
+?>

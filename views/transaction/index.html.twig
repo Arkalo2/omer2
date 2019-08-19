@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+{% block title %}Transactions{% endblock %}
+{% block body %}
+    <h2>Liste des transactions <a href='/transaction/add' class='btn btn-primary'>Ajouter</a></h2>
+    <table id="tables" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Prix</th>
+                <th>Client</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        {% for transaction in transactions %}
+        <tbody>
+            <tr>
+                <td><a href="/transaction/{{ transaction.id }}">{{transaction.id}}</a></td>
+                <td>{{ transaction.price }}€</td>
+                <td><a href="/client/{{transaction.client.id}}">{{transaction.client.name}}</a></td>
+                <td>{{ transaction.createdAt | date('j. F Y à H:i:s')}}</td>
+            </tr>
+        </tbody>
+        {% endfor %}
+        <tfoot>
+            <tr>
+                <th>ID</th>
+                <th>Prix</th>
+                <th>Client</th>
+                <th>Date</th>
+            </tr>
+        </tfoot>
+    </table>
+{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="css/datatable.css">
+{{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+<script src="js/datatable.js"></script>
+<script type="application/javascript">
+
+$(document).ready(function() {
+    $('#tables').DataTable();
+});
+
+</script>
+{{ parent() }}
+{% endblock %}
